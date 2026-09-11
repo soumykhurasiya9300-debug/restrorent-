@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --wine: #2a0a12;
+  --wine-soft: #3d1420;
+  --wine-mid: #521a2a;
+  --wine-glow: #6b2235;
+  --plum: #1a0810;
+  --gold: #d4a656;
+  --gold-light: #e8c887;
+  --gold-dark: #a87c30;
+  --gold-pale: #f0dfb8;
+  --rose: #c47a7a;
+  --rose-light: #e0a5a5;
+  --cream: #f5ead8;
+  --cream-dark: #e5d5bc;
+  --sand: #c9b58a;
+  --text-light: #f5ead8;
+  --text-muted: #b8a48a;
+  --text-faint: #7a6a58;
+  --line: rgba(212, 166, 86, 0.18);
+  --line-soft: rgba(212, 166, 86, 0.08);
+  --line-strong: rgba(212, 166, 86, 0.35);
+  --glass-bg: rgba(42, 10, 18, 0.88);
+  --shadow-lg: 0 40px 90px rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 20px 50px rgba(0, 0, 0, 0.35);
+  --shadow-gold: 0 20px 50px rgba(212, 166, 86, 0.15);
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --nav-h: 82px;
+  --pad-x: clamp(20px, 5vw, 80px);
+  --section-pad: clamp(80px, 10vw, 140px);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--wine);
+  color: var(--text-light);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--wine);
+  color: var(--text-light);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+@media (min-width: 901px) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor input,
+  body.has-custom-cursor select,
+  body.has-custom-cursor textarea {
+    cursor: none;
+  }
+}
+
+/* Film grain overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+}
+
+/* Ambient glow */
+.ambient-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, rgba(212, 166, 86, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--plum);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--wine-mid);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Font helpers */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Marquee infinite scroll */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 38s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hero orb floats */
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(35px, -25px) scale(1.12);
+  }
+}
+
+.animate-orb-1 {
+  animation: orbFloat 14s ease-in-out infinite;
+}
+.animate-orb-2 {
+  animation: orbFloat 18s ease-in-out infinite reverse;
+}
+
+/* Pulse animation */
+@keyframes pulseRing {
+  0% { transform: scale(0.7); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+/* Pin float */
+@keyframes pinFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-pin {
+  animation: pinFloat 3s ease-in-out infinite;
+}

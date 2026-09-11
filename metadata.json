@@ -1,0 +1,6 @@
+{
+  "name": "Hotel Options Restaurant",
+  "description": "Hotel Options Restaurant — Jabalpur's beloved fine-dining destination in Wright Town. Delicious food, beautiful interiors & flamboyant atmosphere. 4.7★ with 557+ reviews.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
